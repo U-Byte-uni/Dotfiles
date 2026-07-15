@@ -1,20 +1,35 @@
-Credit to randomboi404 for original config files
+# Dotfiles Widgets
+
+Credit to randomboi404 for the original config files.
+
+## Preview
 
 <img width="1920" height="1080" alt="image" src="https://github.com/user-attachments/assets/9e3f015e-4f0c-4004-a76a-c9ba7ac49c1c" />
 
-Installation
+## Installation
 
-1.Install the eww-git ver NOT the simple eww version
+### 1. Install `eww-git`
 
-2.Copy files to .config/eww/widgets folder
+Install the `eww-git` version, not the standard `eww` package.
 
-3.Create a eww.yuck file in eww folder
+### 2. Copy widget files
 
+Copy files to `.config/eww/widgets`.
+
+### 3. Create `eww.yuck`
+
+Create an `eww.yuck` file in the `eww` folder:
+
+```lisp
 (include "./widgets/bg-panel/bg-panel.yuck")
 (include "./widgets/activate-linux/activate-linux.yuck")
+```
 
-4.Create a eww.scss file also
+### 4. Create `eww.scss`
 
+Create an `eww.scss` file in the `eww` folder:
+
+```scss
 // Import pywal generated colors
 @import "/home/<username>/.cache/wal/colors.scss";
 
@@ -57,7 +72,6 @@ tooltip {
   background-color: rgba(#ffffff, 0.5);
 }
 
-
 /* Widgets */
 // Background Panel
 @import "./widgets/bg-panel/bg-panel.scss";
@@ -65,11 +79,15 @@ tooltip {
 @import "./widgets/activate-linux/activate-linux.scss";
 * {
   all: unset;
- font-family: "JetBrains  Mono", "Noto Sans", monospace;
+  font-family: "JetBrains  Mono", "Noto Sans", monospace;
 }
+```
 
-5.Create quotes.json file to display quotes (Add custom quotes )
+### 5. Create `quotes.json`
 
+Create a `quotes.json` file to display quotes (add your custom quotes):
+
+```json
 [
   {
     "quote": "You will be warm again.",
@@ -192,5 +210,4 @@ tooltip {
     "author": "A Faithfull Husband"
   }
 ]
-
-
+```
