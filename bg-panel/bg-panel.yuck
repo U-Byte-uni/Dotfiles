@@ -1,0 +1,65 @@
+(defwindow bg-panel
+  :namespace	"bg-panel"
+  :monitor      0
+  :stacking     "bg"
+  :geometry     (geometry
+                  :anchor "top left"
+		  :x "1%"
+		  :y "3%"
+                  :width  "20%"
+                  :height "20%"
+                )
+      (widget)
+)
+
+(defvar y true)
+
+(defpoll weather :interval "3h" `./widgets/bg-panel/scripts/weather.sh`)
+(defpoll quote :interval "2m"
+  `bash -c 'INDEX_FILE="/tmp/eww-quote-index"; TOTAL=$(jq "length" ~/.config/eww/quotes.json); INDEX=$(cat "$INDEX_FILE" 2>/dev/null || echo 0); jq -c ".[$INDEX]" ~/.config/eww/quotes.json; NEXT_INDEX=$(( (INDEX + 1) % TOTAL )); echo "$NEXT_INDEX" > "$INDEX_FILE"'`
+)
+
+(defpoll date :interval "1h" `date --utc +'{"date":"%d %B, %Y","day":"%A"}'`)
+(defpoll uptime :interval "30s" `awk '{d=int($1/86400);h=int(($1%86400)/3600);m=int(($1%3600)/60);} END {if(d>0) printf "%d days %d hrs %d min", d,h,m; else if(h>0) printf "%d hrs %d min", h,m; else if(m>0) printf "%d min", m; else print "0 min"}' /proc/uptime`)
+
+(defpoll battery :interval "30s" `cat /sys/class/power_supply/BAT0/capacity 2>/dev/null || cat /sys/class/power_supply/BAT1/capacity 2>/dev/null || echo "N/A"`)
+
+(defwidget widget []
+	(box :orientation "h" :space-evenly false :halign "start" :spacing 25
+		(box :orientation "v" :space-evenly false :spacing 20
+			(eventbox :height 70 :width 70 :class "wicon" :cursor "pointer" :onclick "hyprctl dispatch exec dolphin"
+				(label :text "")
+			)
+			(eventbox :height 70 :width 70 :class "wicon" :cursor "pointer" :onclick "hyprctl dispatch exec zen-browser"
+				(label :text "󰖟")
+			)
+			(eventbox :height 70 :width 70 :class "wicon" :cursor "pointer" :onclick "hyprctl dispatch exec audacious"
+				(label :text "")
+			)
+			(eventbox :height 70 :width 70 :class "wicon" :cursor "pointer" :onclick "hyprctl dispatch exec code"
+				(label :text "")
+			)
+		)
+		(box :orientation "v" :space-evenly false :spacing 20
+			(label :class "wdate" :xalign 0 :text "${date.date}")
+			(label :class "wday" :xalign 0 :text "${date.day}")
+			(box :orientation "h" :space-evenly false
+				(box :class "divider-v")
+				(revealer :reveal y :transition "slideright"
+					(box :orientation "v" :space-evenly false
+						(label :class "welement uptime-text" :xalign 0 :text "( ) Up             ${uptime}")
+						(label :class "welement weather-text" :xalign 0 :text "( ) Weather        ${weather}")
+						(label :class "welement battery-text" :xalign 0 :text "( ) Battery        ${battery}%")
+						(box :orientation "h" :style "margin-top: 1rem;" :spacing 15 :space-evenly false
+							(label :class "wqicon" :text "󰚢")
+							(box :orientation "v" :space-evenly false :style "margin-top: 1rem;"
+								(label :class "wqtext quote-text" :lines 16 :justify "center" :limit-width 27 :text "${quote.quote}")
+								(label :class "wqtext" :lines 1 :xalign 1 :justify "end" :limit-width 20 :style "color: rgba(255, 255, 255, 0.6);" :text "- ${quote.author}")
+							)
+						)
+					)
+				)
+			)
+		)
+	)
+)
