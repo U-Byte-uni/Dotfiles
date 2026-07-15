@@ -1,0 +1,350 @@
+* {
+font-family: "JetBrains Mono", "Noto Sans", monospace;
+font-size: 14px;
+font-weight: 500;
+}
+
+/* Increase all icon font sizes globally */
+window#waybar * {
+    font-size: 14px;  /* Base size */
+}
+
+
+/* Dark theme color scheme */
+@define-color dark_bg #1e1e2e;
+@define-color darker_bg #181825;
+@define-color gray_bg #3a3a4a;
+@define-color red #ff3333;
+@define-color dark_red #cc0000;
+@define-color light_red #ff6666;
+@define-color blue #3399ff;
+@define-color dark_blue #0066cc;
+@define-color light_blue #66b3ff;
+@define-color text #ffffff;
+@define-color text_dim #a6adc8;
+@define-color black #000000;
+
+#waybar {
+background-color: rgba(0, 0, 0, 0.4);
+color: @text;
+border-radius: 50px 50px 50px 50px;
+}
+
+tooltip {
+    background-color: @gray_bg;
+    border: 1px solid @red;
+    border-radius: 8px;
+}
+
+tooltip label {
+    color: @text;
+}
+
+button {
+    border: none;
+    border-radius: 0;
+    padding: 0 5px;
+    transition: all 0.2s ease;
+}
+
+#workspaces {
+background-color: @dark_bg;
+border-radius: 10px;
+margin: 5px;
+padding: 2px;
+}
+
+#workspaces button {
+background-color: transparent;
+color: @text;
+border-radius: 6px;
+margin: 0 2px;
+padding: 0 8px;
+transition: all 0.2s ease;
+}
+
+#workspaces button:hover {
+color: @red;
+background-color: rgba(255, 51, 51, 0.15);
+}
+
+#workspaces button.active {
+color: @text;
+background-color: @red;
+font-weight: bold;
+}
+
+#workspaces button.empty:not(.active) {
+color: @text_dim;
+}
+
+#workspaces button.urgent {
+background-color: @dark_red;
+color: @text;
+}
+
+#custom-separator {
+margin-right: 10px;
+margin-left: 10px;
+}
+
+#custom-cava {
+background-color: @gray_bg;
+color: @text;
+font-family: monospace;
+padding: 0 12px;
+border-radius: 10px;
+margin: 5px;
+}
+
+#custom-weather.icon {
+background-color: @gray_bg;
+color: @text;
+padding: 0 10px;
+border-radius: 10px 0 0 10px;
+margin: 5px 0 5px 5px;
+font-size: 18px;
+}
+
+#custom-weather.text {
+background-color: @gray_bg;
+color: @text;
+padding: 0 12px;
+border-radius: 0 10px 10px 0;
+margin: 5px 5px 5px 0;
+}
+
+#custom-logo {
+background-color: @gray_bg;
+color: @text;
+padding: 0 12px;
+border-radius: 10px;
+margin: 5px;
+font-size: 18px;
+}
+
+#custom-notification {
+background-color: @gray_bg;
+color: @text;
+padding: 0 12px;
+border-radius: 10px;
+margin: 5px;
+font-size: 16px;
+}
+
+#window {
+background-color: @gray_bg;
+color: @text;
+padding: 0 12px;
+border-radius: 10px;
+margin: 5px;
+}
+
+#custom-updates.icon {
+background-color: @gray_bg;
+color: @text;
+padding: 0 10px;
+border-radius: 10px 0 0 10px;
+margin: 5px 0 5px 5px;
+font-size: 16px;
+}
+
+#custom-updates.text {
+background-color: @gray_bg;
+color: @text;
+padding: 0 12px;
+border-radius: 0 10px 10px 0;
+margin: 5px 5px 5px 0;
+}
+
+#idle_inhibitor {
+background-color: @gray_bg;
+color: @text;
+border-radius: 10px;
+margin: 5px;
+padding: 0 10px;
+font-size: 16px;
+}
+
+#idle_inhibitor.activated {
+color: @red;
+}
+
+#custom-snapper {
+background-color: @gray_bg;
+color: @text;
+padding: 0 5px;
+border-radius: 10px;
+margin: 5px;
+}
+
+#network.icon {
+background-color: @text;
+color: @gray_bg;
+padding: 0 12px;
+border-radius: 10px 0 0 10px;
+margin: 5px 0 5px 5px;
+font-size: 16px;
+}
+
+#network.text {
+background-color: @gray_bg;
+color: @text;
+padding: 0 12px;
+border-radius: 0 10px 10px 0;
+margin: 5px 5px 5px 0;
+}
+
+#bluetooth.icon {
+background-color: @gray_bg;
+color: @text;
+padding: 0 12px;
+border-radius: 10px;
+margin: 5px;
+font-size: 16px;
+}
+
+#bluetooth.icon.on {
+background-color: @blue;
+color: @text;
+}
+
+#bluetooth.icon.connected {
+background-color: @dark_blue;
+color: @text;
+}
+
+#custom-cpu.icon {
+background-color: @text;
+color: @gray_bg;
+padding: 0 10px;
+border-radius: 10px 0 0 10px;
+margin: 5px 0 5px 5px;
+font-size: 16px;
+}
+
+#custom-cpu.text {
+background-color: @gray_bg;
+color: @text;
+padding: 0 12px;
+border-radius: 0 10px 10px 0;
+margin: 5px 5px 5px 0;
+}
+
+#memory.icon {
+background-color: @text;
+color: @gray_bg;
+padding: 0 10px;
+border-radius: 10px 0 0 10px;
+margin: 5px 0 5px 5px;
+font-size: 16px;
+}
+
+#memory {
+background-color: @gray_bg;
+color: @text;
+padding: 0 12px;
+border-radius: 0 10px 10px 0;
+margin: 5px 5px 5px 0;
+}
+
+#battery.icon {
+background-color: @text;
+color: @gray_bg;
+padding: 0 12px;
+border-radius: 10px 0 0 10px;
+margin: 5px 0 5px 5px;
+font-size: 16px;
+}
+
+#battery.text {
+background-color: @gray_bg;
+color: @text;
+padding: 0 12px;
+border-radius: 0 10px 10px 0;
+margin: 5px 5px 5px 0;
+}
+
+#battery.icon.warning {
+background-color: #ff8800;
+color: @text;
+}
+
+#battery.icon.critical {
+background-color: @red;
+color: @text;
+}
+
+#battery.icon.charging {
+background-color: #33ff33;
+color: #ffffff;
+}
+
+#battery.critical:not(.charging) {
+animation: blink 0.7s cubic-bezier(0.68, -0.55, 0.27, 1.55) infinite alternate;
+}
+
+#pulseaudio.icon {
+background-color: @text;
+color: @gray_bg;
+padding: 0 12px;
+border-radius: 10px 0 0 10px;
+margin: 5px 0 5px 5px;
+font-size: 16px;
+}
+
+#pulseaudio.text {
+background-color: @gray_bg;
+color: @text;
+padding: 0 12px;
+border-radius: 0 10px 10px 0;
+margin: 5px 5px 5px 0;
+}
+
+#clock.icon {
+background-color: @text;
+color: @gray_bg;
+padding: 0 12px;
+border-radius: 10px 0 0 10px;
+margin: 5px 0 5px 5px;
+font-size: 16px;
+}
+
+#clock.text {
+background-color: @gray_bg;
+color: @text;
+padding: 0 12px;
+border-radius: 0 10px 10px 0;
+margin: 5px 5px 5px 0;
+}
+
+#tray {
+background-color: @gray_bg;
+padding: 0 10px;
+border-radius: 10px;
+margin: 5px;
+}
+
+#tray > .passive {
+-gtk-icon-effect: dim;
+}
+
+#tray > .needs-attention {
+-gtk-icon-effect: highlight;
+background-color: @red;
+}
+
+@keyframes blink {
+    to {
+        background-color: @red;
+        color: @text;
+    }
+}
+
+.modules-left > widget\:first-child > #workspaces {
+    margin-left: 0;
+}
+
+.modules-right > widget\:last-child > #workspaces {
+    margin-right: 0;
+}
