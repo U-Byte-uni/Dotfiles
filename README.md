@@ -3,8 +3,11 @@ Credit to randomboi404 for original config files
 <img width="1920" height="1080" alt="image" src="https://github.com/user-attachments/assets/9e3f015e-4f0c-4004-a76a-c9ba7ac49c1c" />
 
 Installation
+
 1.Install the eww-git ver NOT the simple eww version
+
 2.Copy files to .config/eww/widgets folder
+
 3.Create a eww.yuck file in eww folder
 
 (include "./widgets/bg-panel/bg-panel.yuck")
@@ -66,6 +69,7 @@ tooltip {
 }
 
 5.Create quotes.json file to display quotes (Add custom quotes )
+
 [
   {
     "quote": "You will be warm again.",
